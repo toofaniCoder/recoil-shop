@@ -779,8 +779,9 @@ export const filteredProducts = selector({
     const searchText = get(searchTextState);
     const filterItem = get(productFilteredState);
     let filteredProducts = [];
+    const re = new RegExp(searchText, "i");
     filteredProducts = products
-      .filter((product) => product.name.includes(searchText))
+      .filter((product) => product.name.match(re))
       .filter((product) =>
         filterItem == "" ? true : product.type == filterItem
       );
